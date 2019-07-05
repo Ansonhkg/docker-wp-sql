@@ -6,11 +6,11 @@ services:
         container_name: mysql
         image: mysql:5.7
         volumes:
-            - ${MYSQL_VOLUME_HOST}:${MYSQL_VOLUME_CONTAINER}
+            - ./mysql:/var/lib/mysql
         environment:
-            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_ROOT_PASSWORD: dev
         ports:
-          - ${MYSQL_PORT}:3306
+          - 3306:3306
         networks:
           - default
 
@@ -19,15 +19,11 @@ services:
         container_name: wordpress
         image: wordpress:latest
         volumes:
-          - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+          - ./wp-content:/var/www/html/wp-content
+          - ./wp-config.php:/var/www/html/wp-config.php
         ports:
-          - ${WORDPRESS_HTTP}:80
-          - ${WORDPRESS_HTTPS}:443
-        environment:
-          WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
-          WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
-          WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
-          WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+          - 80:80
+          - 443:443
         networks:
           - default
 
