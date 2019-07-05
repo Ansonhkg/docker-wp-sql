@@ -18,6 +18,10 @@
  * @package WordPress
  */
 
+@ini_set( 'upload_max_size' , '20M' );
+@ini_set( 'post_max_size', '13M');
+@ini_set( 'memory_limit', '15M' );
+
 define('FS_METHOD', 'direct');
 
 // ** MySQL settings - You can get this info from your web host ** //

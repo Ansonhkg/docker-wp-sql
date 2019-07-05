@@ -21,6 +21,7 @@ services:
         volumes:
           - ./wp-content:/var/www/html/wp-content
           - ./wp-config.php:/var/www/html/wp-config.php
+          - ./.htaccess:/var/www/html/.htaccess
         ports:
           - 80:80
           - 443:443
