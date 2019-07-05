@@ -1,5 +1,7 @@
 version: '3.7'
 services:
+
+    # ========== MySQL ==========
     mysql:
         container_name: mysql
         image: mysql:5.7
@@ -12,11 +14,12 @@ services:
         networks:
           - default
 
+    # ========== Wordpress ==========
     wordpress:
         container_name: wordpress
         image: wordpress:latest
         volumes:
-          - ./wp-content:/var/www/html/wp-content
+          - ${APP_CODE_PATH_HOST}:/var/www/html/wp-content
         ports:
           - '80:80'
         environment:
