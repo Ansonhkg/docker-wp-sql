@@ -1,10 +1,15 @@
-# Note
+# Docker with Wordprss and SQL
+
+## Table of Content
+- [Note1](#user-content-note)
+
+## Note
 
 For some reasons, this only works if you place your project under C:/ drive. If you place your project in any other drives, it would appear:
 
 ![](https://i.gyazo.com/e0dfd5c1f19874f0a60623c18274248f.png)
 
-# Note 2
+## Note 2
 
 When mouting a custom `wp-config.php`, you need to make sure you are not using any environment variable. That's because the offical Wordpress docker image will automatically configure `wp-config.php` using the environment variables you set. 
 
@@ -19,7 +24,7 @@ Personally, I use [HeidiSQL](https://www.heidisql.com/) to connect to the contai
 Now if you go back to [localhost](localhost) it should redirect you back to this page.
 ![](https://gyazo.com/f0c3a7ae2cb24ce057b08ce20c3c7ba7.png)
 
-# Note 3 (FTP Connection Information!?)
+## Note 3 (FTP Connection Information!?)
 
 Wordpress cannot write to `wp-content` Because we have mounted it to our host. That's why Wordpress prompt you for your FTP connection information.
 
