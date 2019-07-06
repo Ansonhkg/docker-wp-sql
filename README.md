@@ -1,6 +1,6 @@
-# Docker with Wordprss and SQL
+# Docker with Stateless Wordprss and SQL
 
-- [Docker with Wordprss and SQL](#Docker-with-Wordprss-and-SQL)
+- [Docker with Stateless Wordprss and SQL](#Docker-with-Stateless-Wordprss-and-SQL)
   - [Note](#Note)
   - [Note 2](#Note-2)
     - [Creating a database in advanced](#Creating-a-database-in-advanced)

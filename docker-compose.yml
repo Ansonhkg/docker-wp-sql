@@ -20,15 +20,11 @@ services:
           - BACKEND
 
     # ========== Wordpress ==========
-    # Environment variables for db connection is set in .filesystem/wordpress/wp_config.php.
-    # If you want to place it here, then you can't mount wp_config.php
     wordpress:
         container_name: wordpress.ca
-        image: wordpress:${WP_VERSION}
+        build: ./wordpress
         volumes:
-          - ${DATA_PATH_HOST}/${WP_CONTENT_HOST}:${WP_CONTENT_CONTAINER}
-          - ${DATA_PATH_HOST}/${WP_CONFIG_HOST}:${WP_CONFIG_CONTAINER}
-          - ${DATA_PATH_HOST}/${WP_HTACCESS_HOST}:${WP_HTACCESS_CONTAINER}
+          - ${WP_CONTENT_HOST}:${WP_CONTENT_CONTAINER}
         ports:
           - ${WP_HTTP}:80
           - ${WP_HTTPS}:443
