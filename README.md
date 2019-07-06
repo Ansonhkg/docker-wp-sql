@@ -3,6 +3,7 @@
 - [Docker with Wordprss and SQL](#Docker-with-Wordprss-and-SQL)
   - [Note](#Note)
   - [Note 2](#Note-2)
+    - [Creating a database in advanced](#Creating-a-database-in-advanced)
   - [Note 3 (FTP Connection Information!?)](#Note-3-FTP-Connection-Information)
 
 ## Note
@@ -25,6 +26,11 @@ Personally, I use [HeidiSQL](https://www.heidisql.com/) to connect to the contai
 
 Now if you go back to [localhost](localhost) it should redirect you back to this page.
 ![](https://gyazo.com/f0c3a7ae2cb24ce057b08ce20c3c7ba7.png)
+
+### Creating a database in advanced
+
+You have to specify an entry point 
+![](https://gyazo.com/3b3ed7655599a14c16620a89a6298c01.png)
 
 ## Note 3 (FTP Connection Information!?)
 
