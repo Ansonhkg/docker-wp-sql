@@ -18,9 +18,8 @@
  * @package WordPress
  */
 
-@ini_set( 'upload_max_size' , '20M' );
-@ini_set( 'post_max_size', '13M');
-@ini_set( 'memory_limit', '15M' );
+define( 'DBI_AWS_ACCESS_KEY_ID', 'ENTER_YOUR_AWS_ACCESS_KEY_FOR_S3' );
+define( 'DBI_AWS_SECRET_ACCESS_KEY', 'ZzCCCMo+ENTER_YOUR_AWS_SECRET_KEY_FOR_S3' );
 
 define('FS_METHOD', 'direct');
 

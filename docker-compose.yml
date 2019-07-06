@@ -3,30 +3,33 @@ services:
 
     # ========== MySQL ==========
     mysql:
-        container_name: mysql
-        image: mysql:5.7
+        container_name: mysql.ca
+        image: mysql:${MYSQL_VERSION}
         volumes:
-            - ./mysql:/var/lib/mysql
+            - ${DATA_PATH_HOST}/mysql:/var/lib/mysql
+
         environment:
-            MYSQL_ROOT_PASSWORD: dev
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         ports:
-          - 3306:3306
+          - ${MYSQL_PORT}:3306
         networks:
-          - default
+          - ${BACKEND}
 
     # ========== Wordpress ==========
+    # Environment variables for db connection is set in .filesystem/wordpress/wp_config.php.
+    # If you want to place it here, then you can't mount wp_config.php
     wordpress:
-        container_name: wordpress
-        image: wordpress:latest
+        container_name: wordpress.ca
+        image: wordpress:${WP_VERSION}
         volumes:
-          - ./wp-content:/var/www/html/wp-content
-          - ./wp-config.php:/var/www/html/wp-config.php
-          - ./.htaccess:/var/www/html/.htaccess
+          - ${DATA_PATH_HOST}/${WP_CONTENT_HOST}:${WP_CONTENT_CONTAINER}
+          - ${DATA_PATH_HOST}/${WP_CONFIG_HOST}:${WP_CONFIG_CONTAINER}
+          - ${DATA_PATH_HOST}/${WP_HTACCESS_HOST}:${WP_HTACCESS_CONTAINER}
         ports:
-          - 80:80
-          - 443:443
+          - ${WP_HTTP}:80
+          - ${WP_HTTPS}:443
         networks:
-          - default
+          - ${BACKEND}
 
 networks:
-    default:
+    ${BACKEND}:
