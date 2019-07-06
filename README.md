@@ -1,38 +1,22 @@
-# Docker with Stateless Wordprss and SQL
+# Docker with Stateless Wordprss and SQL for AWS 
 
-- [Docker with Stateless Wordprss and SQL](#Docker-with-Stateless-Wordprss-and-SQL)
-  - [Note](#Note)
-  - [Note 2](#Note-2)
-    - [Creating a database in advanced](#Creating-a-database-in-advanced)
-  - [Note 3 (FTP Connection Information!?)](#Note-3-FTP-Connection-Information)
+- [Docker with Stateless Wordprss and SQL for AWS](#Docker-with-Stateless-Wordprss-and-SQL-for-AWS)
+  - [Before starting...](#Before-starting)
+  - [Under the hood](#Under-the-hood)
+  - [Note: FTP Connection Information](#Note-FTP-Connection-Information)
 
-## Note
+## Before starting...
 
-For some reasons, this only works if you place your project under C:/ drive. If you place your project in any other drives, it would appear:
-
+> For some reasons, this only works if you place your project under **C:/** drive. If you place your project in any other drives, it would appear the following message. Note: I'm using Windows 10 Pro OS. 
 ![](https://i.gyazo.com/e0dfd5c1f19874f0a60623c18274248f.png)
 
-## Note 2
+## Under the hood
 
-When mouting a custom `wp-config.php`, you need to make sure you are not using any environment variable. That's because the offical Wordpress docker image will automatically configure `wp-config.php` using the environment variables you set. 
+`./wordpress/Dockerfile` adds the `wp-content` folder, `.htaccess` and `wp-config.php` into the container. The `wp-config` uses Wordpress image **environment variables** from `.env` file. In production, you will need to set the .env variables in the cloud. For example, in AWS [ECR](https://aws.amazon.com/ecr/), you will need to set it in the **Container Definition** under **Task Definitions**. I have written a very short tutorial on [How to deploy a simple docker application to AWS (2019)](1)
 
-If you go to localhost it might say **Error establishing a database connection.**, and if you go to `localhost/wp-admin/install.php`. You might see the following message. If you read the message clearly, it says **We were able to connect to the database server**, so all you need to do now is to create a database called `wordpress` 
+![](https://gyazo.com/7532476a978aa40be7adab046f72a4b6.png)
 
-![](https://gyazo.com/fc3ea3b4dec030d87d7b15d1cd13038b.png)
-
-Personally, I use [HeidiSQL](https://www.heidisql.com/) to connect to the container, and manually create a database called `wordpress`.
-
-![](https://gyazo.com/439d639dc1bbf4e7446a676ec4f7d9a6.gif)
-
-Now if you go back to [localhost](localhost) it should redirect you back to this page.
-![](https://gyazo.com/f0c3a7ae2cb24ce057b08ce20c3c7ba7.png)
-
-### Creating a database in advanced
-
-You have to specify an entry point 
-![](https://gyazo.com/3b3ed7655599a14c16620a89a6298c01.png)
-
-## Note 3 (FTP Connection Information!?)
+## Note: FTP Connection Information
 
 Wordpress cannot write to `wp-content` Because we have mounted it to our host. That's why Wordpress prompt you for your FTP connection information.
 
@@ -41,3 +25,4 @@ To Install Wordpress plugins directly without FTP, you need to add `define('FS_M
 > To understand what security concerns you should have, please read here
 > https://wordpress.stackexchange.com/questions/189554/what-security-concerns-should-i-have-when-setting-fs-method-to-direct-in-wp-co
 
+[1]:http://ansoncheung.me/web-development/devops/2019/07/05/how-to-deploy-a-simple-docker-application-on-aws.html
