@@ -12,7 +12,7 @@
 
 ## Under the hood
 
-`./wordpress/Dockerfile` adds the `wp-content` folder, `.htaccess` and `wp-config.php` into the container. The `wp-config` uses Wordpress image **environment variables** from `.env` file. In production, you will need to set the .env variables in the cloud. For example, in AWS [ECR](https://aws.amazon.com/ecr/), you will need to set it in the **Container Definition** under **Task Definitions**. I have written a very short tutorial on [How to deploy a simple docker application to AWS (2019)](1)
+`./wordpress/Dockerfile` adds the `wp-content` folder, `.htaccess` and `wp-config.php` into the container. The `wp-config` uses Wordpress image **environment variables** from `.env` file. In production, you will need to set the .env variables in the cloud. For example, in AWS [ECR][ecr], you will need to set it in the **Container Definition** under **Task Definitions**. I have written a very short tutorial on [How to deploy a simple docker application to AWS (2019)][1]
 
 ![](https://gyazo.com/7532476a978aa40be7adab046f72a4b6.png)
 
@@ -26,3 +26,5 @@ To Install Wordpress plugins directly without FTP, you need to add `define('FS_M
 > https://wordpress.stackexchange.com/questions/189554/what-security-concerns-should-i-have-when-setting-fs-method-to-direct-in-wp-co
 
 [1]:http://ansoncheung.me/web-development/devops/2019/07/05/how-to-deploy-a-simple-docker-application-on-aws.html
+
+[ecr]:https://aws.amazon.com/ecr/
