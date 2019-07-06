@@ -1,0 +1,8 @@
+!.filesystem/
+.filesystem/*
+!.filesystem/wordpress/
+.filesystem/wordpress/*
+!.filesystem/wordpress/.htaccess
+!.filesystem/wordpress/.wp-config.php
+
+!.env
