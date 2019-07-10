@@ -24,15 +24,29 @@ services:
         container_name: wordpress.ca
         build: ./wordpress
         volumes:
-          - ${WP_CONTENT_HOST}:${WP_CONTENT_CONTAINER}
-        ports:
-          - ${WP_HTTP}:80
-          - ${WP_HTTPS}:443
+          - ./wordpress/public:/var/www/html
         environment:
           WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
           WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
           WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
           WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+        networks:
+          - BACKEND
+
+    # ========== nginx ==========
+    nginx:
+        container_name: nginx.ca
+        build: ./nginx
+        volumes:
+          - ./nginx/certs:/data/certs
+          # - ./nginx:/etc/nginx/conf.d
+          - ./logs/nginx:/var/log/nginx
+          - ./wordpress/public:/var/www/html
+        ports:
+          - ${WP_HTTP}:80
+          - ${WP_HTTPS}:443
+        depends_on:
+          - wordpress
         networks:
           - BACKEND
 
