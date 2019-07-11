@@ -11,7 +11,9 @@ RUN apt-get update && apt-get install openssl
 # ADD certs/api.checkoutafrica.com/ca.chain /data/certs/ca.chain
 
 # Add the Nginx config
-# ADD default.conf /etc/nginx/conf.d/default.conf
+# RUN rm /etc/nginx/conf.d/default.conf
+
+ADD /conf.d/api.checkoutafrica.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 EXPOSE 443

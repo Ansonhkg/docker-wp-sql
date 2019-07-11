@@ -41,7 +41,7 @@ services:
         volumes:
           - ./nginx/certs/api.checkoutafrica.com:/data/certs/api.checkoutafrica.com
           - ./nginx/certs/localhost:/data/certs/localhost
-          - ./nginx/conf.d/${NGINX_CONFIG}:/etc/nginx/conf.d/default.conf
+          # - ./nginx/conf.d/${NGINX_CONFIG}:/etc/nginx/conf.d/default.conf
           - ${DATA_PATH_HOST}/nginx/logs:/var/log/nginx
           - ${DATA_PATH_HOST}/wordpress/html:/var/www/html
         ports:
