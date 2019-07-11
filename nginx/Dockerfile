@@ -12,3 +12,6 @@ RUN apt-get update && apt-get install openssl
 
 # Add the Nginx config
 # ADD default.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+EXPOSE 443

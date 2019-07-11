@@ -24,6 +24,7 @@ services:
         container_name: wordpress.ca
         build: ./wordpress
         volumes:
+          - ./wordpress/wp-content:/var/www/html/wp-content
           - ${DATA_PATH_HOST}/wordpress/html:/var/www/html
         environment:
           WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
