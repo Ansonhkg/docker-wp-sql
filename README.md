@@ -1,9 +1,11 @@
 # Docker with Stateless Wordprss and SQL for AWS 
 
-- [Docker with Stateless Wordprss and SQL for AWS](#Docker-with-Stateless-Wordprss-and-SQL-for-AWS)
-  - [Before starting...](#Before-starting)
-  - [Under the hood](#Under-the-hood)
-  - [Note: FTP Connection Information](#Note-FTP-Connection-Information)
+- [Docker with Stateless Wordprss and SQL for AWS](#docker-with-stateless-wordprss-and-sql-for-aws)
+  - [Before starting...](#before-starting)
+  - [Under the hood](#under-the-hood)
+  - [Note: FTP Connection Information](#note-ftp-connection-information)
+  - [Note: Understanding the Workflow](#note-understanding-the-workflow)
+    - [deploy.sh](#deploysh)
 
 ## Before starting...
 
@@ -24,6 +26,41 @@ To Install Wordpress plugins directly without FTP, you need to add `define('FS_M
 
 > To understand what security concerns you should have, please read here
 > https://wordpress.stackexchange.com/questions/189554/what-security-concerns-should-i-have-when-setting-fs-method-to-direct-in-wp-co
+
+
+## Note: Understanding the Workflow
+
+### deploy.sh
+
+`deploy.sh` does several things in the script before pushing your container to the cloud. 
+
+For wordpress, this it how it works:
+
+- It first commits your local docker `image:version` to your remote container registry (Amazon Elastic Container Registry).
+- ```
+    docker commit $WP_CONTAINER $IMAGE:$VERSION
+
+    ... same as
+
+    docker commit 123456789123.dkr.ecr.eu-west-2.amazonaws.com/wordpress/yourwebsite:0.0.1
+  ```
+
+- Then, it creates a different tag for your remote repo.  
+- ```
+    docker tag $IMAGE:$VERSION $WP_REPO:$VERSION
+
+    ... same as
+
+    docker tag wordpress/yourwebsite:0.0.1 123456789123.dkr.ecr.eu-west-2.amazonaws.com:0.0.1
+  ```
+- Finally, it pushes to the repo.
+- ```
+    docker push $WP_REPO:$VERSION
+
+    ... same as
+
+    docker push 123456789123.dkr.ecr.eu-west-2.amazonaws.com:0.0.1
+  ```
 
 [1]:http://ansoncheung.me/web-development/devops/2019/07/05/how-to-deploy-a-simple-docker-application-on-aws.html
 
