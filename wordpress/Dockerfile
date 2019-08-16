@@ -4,4 +4,5 @@ ADD wp-config.php /var/www/html/wp-config.php
 ADD .htaccess /var/www/html/.htaccess
 ADD wp-content /var/www/html/wp-content
 
+VOLUME /var/www/html
 WORKDIR /var/www/html 

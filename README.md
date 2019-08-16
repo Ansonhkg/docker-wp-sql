@@ -62,6 +62,12 @@ For wordpress, this it how it works:
     docker push 123456789123.dkr.ecr.eu-west-2.amazonaws.com:0.0.1
   ```
 
+Reference:
+
+- [a named volume that is used by both services. eg. wordpress and nginx][shared-volume]
+
+[shared-volume]: https://github.com/docker/compose/issues/3211#issuecomment-201503053
+
 [1]:http://ansoncheung.me/web-development/devops/2019/07/05/how-to-deploy-a-simple-docker-application-on-aws.html
 
 [ecr]:https://aws.amazon.com/ecr/
